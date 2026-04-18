@@ -1,5 +1,4 @@
 import { useInitiative } from "../context/InitiativeContext"
-import Button from "./Button"
 
 export default function InitiativeTable() {
     const { updateInitName, updateInit, updateDex, deleteFromInit, finalInitiative } = useInitiative()
