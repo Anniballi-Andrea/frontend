@@ -36,25 +36,44 @@ export default function MonsterCard({ el }) {
 
                 </div>
                 <div className="card-body">
+
                     <form onSubmit={handleDanno}>
-                        <input
-                            type="number"
-                            value={inputDanno}
-                            onChange={(e) => setInputDanno(e.target.value)}
-                        />
-                        <button type="submit">Danneggia</button>
+                        <div className="d-flex align-items-center">
+                            <div className="me-2 mt-2">
+                                <input
+                                    className="form-control"
+                                    type="number"
+                                    value={inputDanno}
+                                    onChange={(e) => setInputDanno(e.target.value)}
+                                    placeholder="danno"
+                                />
+                            </div>
+                            <div className="mt-2 ms-2">
+                                <button className="btn btn-sm btn-warning" type="submit">Danno</button>
+                            </div>
+                        </div>
                     </form>
+
                     <form onSubmit={handleCura}>
-                        <input
-                            type="number"
-                            value={inputCura}
-                            onChange={(e) => setInputCura(e.target.value)}
-                        />
-                        <button type="submit">Cura</button>
+                        <div className="d-flex align-items-center">
+                            <div className="me-2 mt-2">
+                                <input
+                                    className="form-control "
+                                    type="number"
+                                    value={inputCura}
+                                    onChange={(e) => setInputCura(e.target.value)}
+                                    placeholder="cura"
+                                />
+                            </div>
+                            <div className="mt-2 ms-2">
+                                <button className="btn btn-sm btn-success" type="submit">Cura</button>
+                            </div>
+
+                        </div>
                     </form>
-
-
-                    <button onClick={() => removeFromBattle(el.instanceId)}>rimuovi</button>
+                    <div className="mt-2 d-flex justify-content-center">
+                        <button className="btn btn-sm btn-danger " onClick={() => removeFromBattle(el.instanceId)}>rimuovi</button>
+                    </div>
                 </div>
             </div>
 

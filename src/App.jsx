@@ -3,6 +3,7 @@ import DefaultLayout from "./layout/DefaultLayout"
 import Home from "./pages/Home"
 import MonstersPage from "./pages/MonstersPage"
 import { MonsterProvider } from "./context/MonsterContext"
+import { InitiativeProvider } from "./context/InitiativeContext"
 
 
 function App() {
@@ -13,14 +14,16 @@ function App() {
   return (
     <>
       <MonsterProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<DefaultLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/monsters" element={<MonstersPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <InitiativeProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<DefaultLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/monsters" element={<MonstersPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </InitiativeProvider>
       </MonsterProvider>
 
 

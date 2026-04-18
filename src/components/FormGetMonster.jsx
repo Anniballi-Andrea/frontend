@@ -5,12 +5,12 @@ export default function FormGetMoster() {
     const { getMonster, monsterName, setMonsterName, encounterNumb, setEncounterNumb } = useMonster();
 
     return (
-        <form className="mt-4" onSubmit={getMonster}>
+        <form className="mt-2" onSubmit={getMonster}>
             <div className="row justify-content-center">
                 <div className="col-4">
                     <div>
                         <label htmlFor="serch_encounter" className="custom-label">
-                            mostro da cercare:
+                            Mostro da cercare:
                         </label>
                         <input
                             id="serch_encounter"
@@ -25,7 +25,7 @@ export default function FormGetMoster() {
                 <div className="col-4">
                     <div>
                         <label htmlFor="serch_quantity" className="custom-label">
-                            quantità:
+                            Quantità:
                         </label>
                         <input
                             id="serch_quantity"

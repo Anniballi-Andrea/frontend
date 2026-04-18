@@ -3,24 +3,31 @@ import { useEffect } from "react";
 import FormGetMoster from "../components/FormGetMonster";
 import { useMonster } from "../context/MonsterContext";
 import MonsterCard from "../components/MonsterCard";
+import FormInitiative from "../components/FormInitiative";
 
 
 
 export default function Home() {
-    const { battle, removeFromBattle } = useMonster();
+    const { battle } = useMonster();
 
 
 
-    useEffect(() => {
-        console.log("Stato Battle aggiornato:", battle);
-    }, [battle]);
+
 
     return (
         <>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="col-4"></div>
-                    <div className="col-8">
+                    <div className="col-4 mt-4">
+                        <div className="text-center">
+                            <h5>inserisci giocatori e nemici</h5>
+                        </div>
+                        <FormInitiative />
+                    </div>
+                    <div className="col-8 mt-4">
+                        <div className="text-center">
+                            <h5>Aggiungi nemici</h5>
+                        </div>
                         <FormGetMoster />
                         <div className="row">
                             {
