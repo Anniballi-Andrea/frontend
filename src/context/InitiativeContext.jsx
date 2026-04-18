@@ -60,12 +60,12 @@ export function InitiativeProvider({ children }) {
     }
 
     const updateInit = (id, init) => {
-        const value = init === "" ? 0 : Number(init);
+        const value = Number(init);
         setInitiative((prev) => prev.map((el) => (el.id === id ? { ...el, initiative: value } : el))
         );
     }
     const updateDex = (id, dex) => {
-        const value = dex === "" ? 0 : Number(dex);
+        const value = Number(dex);
         setInitiative((prev) => prev.map((el) => (el.id === id ? { ...el, dex: value } : el))
         );
     }

@@ -1,4 +1,5 @@
 import { useInitiative } from "../context/InitiativeContext"
+import Button from "./Button"
 
 export default function InitiativeTable() {
     const { updateInitName, updateInit, updateDex, deleteFromInit, finalInitiative } = useInitiative()
@@ -19,10 +20,10 @@ export default function InitiativeTable() {
                 {
                     finalInitiative.map((el) => (
                         <tr key={el.id}>
-                            <td> <input type="text" value={el.name} onChange={(e) => updateInitName(el.id, e.target.value)} /></td>
-                            <td><input type="number" value={el.initiative} onChange={(e) => updateInit(el.id, e.target.value)} /></td>
-                            <td><input type="number" value={el.dex} onChange={(e) => updateDex(el.id, e.target.value)} /></td>
-                            <td><button type="button" onClick={() => deleteFromInit(el.id)} className="btn btn-sm btn-danger">elimina</button></td>
+                            <td>{el.name}</td>
+                            <td>{el.initiative}</td>
+                            <td>{el.dex}</td>
+                            <td> <button type="button" onClick={() => deleteFromInit(el.id)} className="btn btn-sm btn-danger">elimina</button> </td>
                         </tr>
 
                     ))
