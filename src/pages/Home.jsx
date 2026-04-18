@@ -1,14 +1,17 @@
 
-import { useEffect } from "react";
+
 import FormGetMoster from "../components/FormGetMonster";
 import { useMonster } from "../context/MonsterContext";
 import MonsterCard from "../components/MonsterCard";
 import FormInitiative from "../components/FormInitiative";
+import InitiativeTable from "../components/InitiativeTable";
+import { useInitiative } from "../context/InitiativeContext";
 
 
 
 export default function Home() {
     const { battle } = useMonster();
+    const { finalInitiative } = useInitiative();
 
 
 
@@ -23,6 +26,12 @@ export default function Home() {
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
                         <FormInitiative />
+                        <div >{finalInitiative.length > 0 ?
+                            <InitiativeTable /> :
+                            <p>inserisci i giocatori</p>
+                        }
+
+                        </div>
                     </div>
                     <div className="col-8 mt-4">
                         <div className="text-center">
@@ -31,7 +40,7 @@ export default function Home() {
                         <FormGetMoster />
                         <div className="row">
                             {
-                                battle.length > 0 ? (battle.map((el, i) => (
+                                battle.length > 0 ? (battle.map((el) => (
                                     <div key={el.instanceId} className="col-3 mt-3">
                                         <MonsterCard el={el} />
                                     </div>

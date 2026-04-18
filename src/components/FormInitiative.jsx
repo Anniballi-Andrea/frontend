@@ -5,11 +5,8 @@ import { useInitiative } from "../context/InitiativeContext"
 export default function FormInitiative() {
     const { initiative, playerName, setPlayerName, playerInit, setPlayerInit, playerDex, setPlayerDex, addInitiative } = useInitiative()
 
-
-
-
     useEffect(() => {
-        console.log("Stato Battle aggiornato:", initiative);
+        console.log("Stato Iniziativa aggiornato:", initiative);
     }, [initiative]);
 
     return (
