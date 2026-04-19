@@ -11,13 +11,21 @@ export default function MonsterCard({ el }) {
 
     const handleDanno = (e) => {
         e.preventDefault();
-        applicaDanno(el.instanceId, Number(inputDanno))
+        let danno = Number(inputDanno)
+        if (danno < 0) {
+            danno = 0
+        }
+        applicaDanno(el.instanceId, Number(danno))
 
         setInputDanno("")
     }
     const handleCura = (e) => {
         e.preventDefault();
-        applicaCura(el.instanceId, Number(inputCura))
+        let cura = Number(inputCura)
+        if (cura < 0) {
+            cura = 0
+        }
+        applicaCura(el.instanceId, Number(cura))
 
         setInputCura("")
     }

@@ -2,7 +2,12 @@ import { useMonster } from "../context/MonsterContext"
 
 export default function FormGetMoster() {
 
-    const { getMonster, monsterName, setMonsterName, encounterNumb, setEncounterNumb } = useMonster();
+    const { allMonsters, getMonster, monsterName, setMonsterName, encounterNumb, setEncounterNumb } = useMonster();
+
+    const allMonsterFiltred = allMonsters.filter((el) => {
+        return el.name.toLowerCase().includes(monsterName.toLowerCase())
+    });
+
 
     return (
         <form className="mt-2" onSubmit={getMonster}>
@@ -18,8 +23,17 @@ export default function FormGetMoster() {
                             type="text"
                             value={monsterName}
                             onChange={e => { setMonsterName(e.target.value) }}
+                            autoComplete="off"
                             required
                         />
+                        {
+                            monsterName.length > 3 && allMonsterFiltred.map((el) => (
+                                <div onClick={(e) => setMonsterName(el.name)}>{el.name}</div>
+
+                            )
+                            )
+                        }
+
                     </div>
                 </div>
                 <div className="col-4">
