@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import MonstersPage from "./pages/MonstersPage"
 import { MonsterProvider } from "./context/MonsterContext"
 import { InitiativeProvider } from "./context/InitiativeContext"
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+
       <MonsterProvider>
         <InitiativeProvider>
           <BrowserRouter>

@@ -13,15 +13,17 @@ export function MonsterProvider({ children }) {
 
 
 
+
+
     //variabile per l'elenco dei nemici in battaglia salvata nel local storage
     const [battle, setBattle] = useState(() => {
-        const savedMonsters = localStorage.getItem("battle-monster");
+        const savedMonsters = localStorage.getItem(`battle-monster`);
         return savedMonsters ? JSON.parse(savedMonsters) : []
     });
 
     //caricare nel local storage lo stato della battaglia ad ogni sua modifica
     useEffect(() => {
-        localStorage.setItem("battle-monster", JSON.stringify(battle));
+        localStorage.setItem(`battle-monster`, JSON.stringify(battle));
     }, [battle]);
 
 

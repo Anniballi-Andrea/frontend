@@ -69,8 +69,6 @@ export function InitiativeProvider({ children }) {
 
 
     const deleteFromInit = (id) => {
-        console.log("sto facendo qualcosa")
-
         setInitiative((prev) => prev.filter((el) => el.id !== id))
 
 

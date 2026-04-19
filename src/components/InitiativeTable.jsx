@@ -5,7 +5,7 @@ export default function InitiativeTable() {
 
     return (
         <>
-            <table className="mt-3 table">
+            <table className="mt-3 table beckground_table ">
                 <thead>
                     <tr>
                         <th> Name</th>

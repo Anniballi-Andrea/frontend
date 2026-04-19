@@ -9,10 +9,10 @@ import { useInitiative } from "../context/InitiativeContext";
 
 
 
+
 export default function Home() {
     const { battle } = useMonster();
     const { finalInitiative } = useInitiative();
-
 
 
 
@@ -21,7 +21,7 @@ export default function Home() {
         <>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-4 mt-4">
+                    <div className="col-4 mt-4 background_custom initiative_container">
                         <div className="text-center">
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
@@ -38,7 +38,7 @@ export default function Home() {
                         </div>
 
                     </div>
-                    <div className="col-8 mt-4">
+                    <div className="col-8 mt-4 background_custom">
                         <div className="text-center">
                             <h5>Aggiungi nemici</h5>
                         </div>
@@ -46,7 +46,7 @@ export default function Home() {
                         <div className="row">
                             {
                                 battle.length > 0 ? (battle.map((el) => (
-                                    <div key={el.instanceId} className="col-3 mt-3">
+                                    <div key={el.instanceId} className="col-3 mt-3 mb-5">
                                         <MonsterCard el={el} />
                                     </div>
 

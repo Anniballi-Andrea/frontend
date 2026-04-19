@@ -1,2 +1,51 @@
 @import url('bootstrap');
 @import url('bootstrap-icons');
+
+header {}
+
+body {
+    background-image: url("../public/img/sfondo.png");
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+.background_custom {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 2px solid #a9741c;
+    border-radius: 15px;
+}
+
+.beckground_table {
+    background: rgba(0, 0, 0, 0.6) !important;
+
+
+
+
+    th {
+        background: rgba(0, 0, 0, 0.6) !important;
+        color: white;
+        border: 2px solid #a9741c;
+    }
+
+    td {
+        background: rgba(0, 0, 0, 0.6) !important;
+        border: 2px solid #a9741c;
+    }
+}
+
+.initiative_container {
+    position: sticky;
+    top: 4rem;
+    max-height: 500px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: gold rgba(0, 0, 0, 0.6);
+
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 2px solid #a9741c;
+    color: white;
+}

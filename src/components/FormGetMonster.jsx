@@ -27,11 +27,9 @@ export default function FormGetMoster() {
                             required
                         />
                         {
-                            monsterName.length > 3 && allMonsterFiltred.map((el) => (
-                                <div onClick={(e) => setMonsterName(el.name)}>{el.name}</div>
-
-                            )
-                            )
+                            monsterName.length >= 3 && allMonsterFiltred.map((el, i) => (
+                                <div key={i} onClick={() => setMonsterName(el.name)}>{el.name}</div>
+                            ))
                         }
 
                     </div>
