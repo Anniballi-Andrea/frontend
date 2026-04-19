@@ -9,6 +9,7 @@ const MonsterContext = createContext();
 export function MonsterProvider({ children }) {
     const [encounterNumb, setEncounterNumb] = useState("");
     const [monsterName, setMonsterName] = useState("");
+    const [allMonsters, setAllMonsters] = useState([])
 
 
 
@@ -23,6 +24,16 @@ export function MonsterProvider({ children }) {
         localStorage.setItem("battle-monster", JSON.stringify(battle));
     }, [battle]);
 
+
+    function getAllMonster() {
+        axios
+            .get("http://localhost:8080/api/monsters")
+            .then((response) => {
+                const data = response.data;
+                setAllMonsters(data);
+            })
+            .catch((err) => console.error("errore:", err));
+    }
 
     const getMonster = (e) => {
         e.preventDefault();
@@ -46,7 +57,7 @@ export function MonsterProvider({ children }) {
                     if (battle.length == 0) {
                         const encounterInstance = {
                             ...data,
-                            name: `${data.name}${index}`,
+                            name: `${data.name} ${index}`,
                             status: `${data.lifePoint}`,
                             instanceId: newId
                         };
@@ -55,7 +66,7 @@ export function MonsterProvider({ children }) {
                         const number = battle.length + index
                         const encounterInstance = {
                             ...data,
-                            name: `${data.name}${number}`,
+                            name: `${data.name} ${number}`,
                             status: `${data.lifePoint}`,
                             instanceId: newId
                         };
@@ -111,6 +122,9 @@ export function MonsterProvider({ children }) {
         )
     }
 
+    useEffect(() => { getAllMonster() }, [])
+
+
     return (
         <MonsterContext.Provider
             value={{
@@ -123,7 +137,8 @@ export function MonsterProvider({ children }) {
                 getMonster,
                 removeFromBattle,
                 applicaDanno,
-                applicaCura
+                applicaCura,
+                allMonsters
             }}
         >
             {children}

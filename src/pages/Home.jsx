@@ -26,12 +26,17 @@ export default function Home() {
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
                         <FormInitiative />
-                        <div >{finalInitiative.length > 0 ?
-                            <InitiativeTable /> :
-                            <p>inserisci i giocatori</p>
-                        }
+                        <div className="row">
+                            <div className="col-12" >{finalInitiative.length > 0 ?
+                                <InitiativeTable /> :
+                                <div className="col text-center mt-3">
+                                    <p>inserisci i giocatori</p>
+                                </div>
 
+                            }
+                            </div>
                         </div>
+
                     </div>
                     <div className="col-8 mt-4">
                         <div className="text-center">

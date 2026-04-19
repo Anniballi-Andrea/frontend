@@ -48,10 +48,7 @@ export function InitiativeProvider({ children }) {
 
     }
 
-
-
-
-
+    const log = (el) => console.log(el)
 
 
     const updateInitName = (id, name) => {
@@ -71,14 +68,27 @@ export function InitiativeProvider({ children }) {
     }
 
 
-
-
     const deleteFromInit = (id) => {
         console.log("sto facendo qualcosa")
 
         setInitiative((prev) => prev.filter((el) => el.id !== id))
 
 
+    }
+
+    function resetInitiative() {
+        const newInit = []
+        initiative.map((el) => {
+            const newElement = {
+                id: el.id,
+                name: el.name,
+                initiative: "",
+                dex: el.dex
+            }
+            newInit.push(newElement)
+        }
+        )
+        setInitiative(newInit)
     }
 
 
@@ -100,7 +110,8 @@ export function InitiativeProvider({ children }) {
                 updateInitName,
                 updateInit,
                 updateDex,
-                deleteFromInit
+                deleteFromInit,
+                resetInitiative
             }}
         >
             {children}

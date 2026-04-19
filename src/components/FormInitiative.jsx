@@ -1,13 +1,11 @@
 
-import { useEffect } from "react"
+
 import { useInitiative } from "../context/InitiativeContext"
 
 export default function FormInitiative() {
-    const { initiative, playerName, setPlayerName, playerInit, setPlayerInit, playerDex, setPlayerDex, addInitiative } = useInitiative()
+    const { playerName, setPlayerName, playerInit, setPlayerInit, playerDex, setPlayerDex, addInitiative } = useInitiative()
 
-    useEffect(() => {
-        console.log("Stato Iniziativa aggiornato:", initiative);
-    }, [initiative]);
+
 
     return (
 

@@ -30,9 +30,16 @@ export default function MonsterCard({ el }) {
                     <div>
                         {el.name}
                     </div>
-                    <div>
-                        pf: {el.status}
+                    <div className="d-flex justify-content-center">
+                        <div className="me-2">{
+                            el.status == 0 ? "morto" : "PF:" + el.status}
+
+                        </div>
+                        <div>
+                            CA: {el.armorClass}
+                        </div>
                     </div>
+
 
                 </div>
                 <div className="card-body">
@@ -71,6 +78,14 @@ export default function MonsterCard({ el }) {
 
                         </div>
                     </form>
+                    <div className="row row-cols-3">
+                        {el.strength < 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: + {el.strength}</div>}
+                        {el.dexterity < 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: + {el.dexterity}</div>}
+                        {el.constitution < 0 ? <div className="col">cons:  {el.constitution}</div> : <div className="col">cons: + {el.constitution}</div>}
+                        {el.intelligence < 0 ? <div className="col">int:  {el.intelligence}</div> : <div className="col">int: + {el.intelligence}</div>}
+                        {el.wisdom < 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: + {el.wisdom}</div>}
+                        {el.charisma < 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: + {el.charisma}</div>}
+                    </div>
                     <div className="mt-2 d-flex justify-content-center">
                         <button className="btn btn-sm btn-danger " onClick={() => removeFromBattle(el.instanceId)}>rimuovi</button>
                     </div>
