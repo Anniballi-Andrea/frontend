@@ -42,7 +42,7 @@ export default function MonstersPage() {
     */
 
     return (
-        <div className="containter">
+        <div className="containter mt-5">
             <div className="row row-cols-5 justify-content-center">
                 {allMonsters.length > 0 &&
                     allMonsters.map((el) => (
