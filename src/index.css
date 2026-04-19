@@ -1,7 +1,10 @@
 @import url('bootstrap');
 @import url('bootstrap-icons');
 
-header {}
+.bg_header {
+    background-color: #161616 !important;
+    color: #a9741c;
+}
 
 body {
     background-image: url("../public/img/sfondo.png");
