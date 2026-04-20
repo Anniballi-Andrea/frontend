@@ -19,6 +19,7 @@ export default function FormInitiative() {
                         type="text"
                         value={playerName}
                         onChange={e => { setPlayerName(e.target.value) }}
+                        placeholder="nome..."
                         required
                     />
                 </div>
@@ -30,6 +31,7 @@ export default function FormInitiative() {
                         type="number"
                         value={playerInit}
                         onChange={e => { setPlayerInit(e.target.value) }}
+                        placeholder="0"
                         required
 
                     />
@@ -42,6 +44,7 @@ export default function FormInitiative() {
                         type="number"
                         value={playerDex}
                         onChange={e => { setPlayerDex(e.target.value) }}
+                        placeholder="0"
                         required
                     />
                 </div>

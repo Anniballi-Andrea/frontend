@@ -1,12 +1,26 @@
+import { useState } from "react";
 import { useMonster } from "../context/MonsterContext"
 
 export default function FormGetMoster() {
 
     const { allMonsters, getMonster, monsterName, setMonsterName, encounterNumb, setEncounterNumb } = useMonster();
+    const [search, setSearch] = useState(false)
+
+
 
     const allMonsterFiltred = allMonsters.filter((el) => {
         return el.name.toLowerCase().includes(monsterName.toLowerCase())
     });
+
+    const searchForAdd = ((name) => {
+        setSearch(true)
+        setMonsterName(name)
+    })
+
+    const stopSearch = ((name) => {
+        setSearch(false)
+        setMonsterName(name)
+    })
 
 
     return (
@@ -17,20 +31,26 @@ export default function FormGetMoster() {
                         <label htmlFor="serch_encounter" className="custom-label">
                             Mostro da cercare:
                         </label>
-                        <input
-                            id="serch_encounter"
-                            className="form-control"
-                            type="text"
-                            value={monsterName}
-                            onChange={e => { setMonsterName(e.target.value) }}
-                            autoComplete="off"
-                            required
-                        />
-                        {
-                            monsterName.length >= 3 && allMonsterFiltred.map((el, i) => (
-                                <div key={i} onClick={() => setMonsterName(el.name)}>{el.name}</div>
-                            ))
-                        }
+                        <div className="relative">
+                            <input
+
+                                id="serch_encounter"
+                                className="form-control"
+                                type="text"
+                                value={monsterName}
+                                onChange={(e) => { searchForAdd(e.target.value) }}
+                                autoComplete="off"
+                                placeholder="nome..."
+                                required
+                            />
+                            <div className="searchbox">
+                                {
+                                    (monsterName.length >= 3 && search) && allMonsterFiltred.map((el, i) => (
+                                        <div className="search_content" key={i} onClick={() => stopSearch(el.name)}>{el.name}</div>
+                                    ))
+                                }
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -45,6 +65,7 @@ export default function FormGetMoster() {
                             type="number"
                             value={encounterNumb}
                             onChange={e => { setEncounterNumb(e.target.value) }}
+                            placeholder="0"
                             required
                         />
                     </div>

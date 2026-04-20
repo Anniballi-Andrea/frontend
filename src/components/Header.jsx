@@ -7,7 +7,7 @@ export default function Header() {
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary bg_header ">
                     <div className="container-fluid">
-                        <span className="fw-bold fs-5">MasterPannel</span>
+                        <span className="fw-bold fs-5">MasterPanel</span>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

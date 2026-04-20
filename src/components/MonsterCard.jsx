@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { useMonster } from "../context/MonsterContext";
+import Modal from "./Modal";
 
 export default function MonsterCard({ el }) {
 
@@ -8,6 +9,7 @@ export default function MonsterCard({ el }) {
 
     const [inputDanno, setInputDanno] = useState("");
     const [inputCura, setInputCura] = useState("");
+
 
     const handleDanno = (e) => {
         e.preventDefault();
@@ -31,11 +33,12 @@ export default function MonsterCard({ el }) {
     }
 
 
+
     return (
         <>
-            <div className="card">
+            <div className="card card_home">
                 <div className="card-header text-center">
-                    <div>
+                    <div className="mb-2">
                         {el.name}
                     </div>
                     <div className="d-flex justify-content-center">
@@ -50,11 +53,11 @@ export default function MonsterCard({ el }) {
 
 
                 </div>
-                <div className="card-body">
+                <div className="card-body ">
 
                     <form onSubmit={handleDanno}>
                         <div className="d-flex align-items-center">
-                            <div className="me-2 mt-2">
+                            <div className="me-2">
                                 <input
                                     className="form-control"
                                     type="number"
@@ -87,15 +90,18 @@ export default function MonsterCard({ el }) {
                         </div>
                     </form>
                     <div className="row row-cols-3">
-                        {el.strength < 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: + {el.strength}</div>}
-                        {el.dexterity < 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: + {el.dexterity}</div>}
-                        {el.constitution < 0 ? <div className="col">cons:  {el.constitution}</div> : <div className="col">cons: + {el.constitution}</div>}
-                        {el.intelligence < 0 ? <div className="col">int:  {el.intelligence}</div> : <div className="col">int: + {el.intelligence}</div>}
-                        {el.wisdom < 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: + {el.wisdom}</div>}
-                        {el.charisma < 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: + {el.charisma}</div>}
+                        {el.strength <= 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: +{el.strength}</div>}
+                        {el.dexterity <= 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: +{el.dexterity}</div>}
+                        {el.constitution <= 0 ? <div className="col">cons:  {el.constitution}</div> : <div className="col">cons: +{el.constitution}</div>}
+                        {el.intelligence <= 0 ? <div className="col">int:  {el.intelligence}</div> : <div className="col">int: +{el.intelligence}</div>}
+                        {el.wisdom <= 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: +{el.wisdom}</div>}
+                        {el.charisma <= 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: +{el.charisma}</div>}
                     </div>
                     <div className="mt-2 d-flex justify-content-center">
-                        <button className="btn btn-sm btn-danger " onClick={() => removeFromBattle(el.instanceId)}>rimuovi</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#encounterDelete">
+                            Elimina
+                        </button>
+                        <Modal removeElement={removeFromBattle} el={el.instanceId} id="encounterDelete" />
                     </div>
                 </div>
             </div>
