@@ -29,7 +29,11 @@ export function InitiativeProvider({ children }) {
     })
 
     const addInitiative = (e) => {
+
         e.preventDefault()
+        let init = playerInit
+        let dex = playerDex
+
 
         const randomNumber = Math.floor(Math.random() * 100)
         const timeStamp = Date.now()
@@ -37,8 +41,15 @@ export function InitiativeProvider({ children }) {
         const player = {
             id: `${timeStamp}${randomNumber}`,
             name: playerName,
-            initiative: playerInit,
-            dex: playerDex
+            initiative: init,
+            dex: dex
+        }
+
+        if (player.initiative == "") {
+            player.initiative = 0
+        }
+        if (player.dex == "") {
+            player.dex = 0
         }
 
         setInitiative([...initiative, player]);
@@ -49,6 +60,8 @@ export function InitiativeProvider({ children }) {
 
 
     }
+
+    useEffect(() => { console.log(initiative) }, [initiative])
 
     const log = (el) => console.log(el)
 

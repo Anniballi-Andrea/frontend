@@ -25,6 +25,16 @@ input::-webkit-inner-spin-button {
     border-radius: 15px;
 }
 
+.border_radius_left {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.border_radius_right {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
 .beckground_table {
     background: rgba(0, 0, 0, 0.6) !important;
 
@@ -55,6 +65,10 @@ input::-webkit-inner-spin-button {
     border-top: 1px solid #a9741c;
 }
 
+.input_short {
+    width: 8rem;
+}
+
 .initiative_container {
     position: sticky;
     top: 4rem;
@@ -62,8 +76,6 @@ input::-webkit-inner-spin-button {
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: gold rgba(0, 0, 0, 0.6);
-
-
 }
 
 .card_home {
@@ -72,10 +84,8 @@ input::-webkit-inner-spin-button {
     color: white;
     height: 500px !important;
     overflow-y: auto !important;
-
-    input {
-        width: 8rem;
-    }
+    scrollbar-width: thin;
+    scrollbar-color: gold rgba(0, 0, 0, 0.6);
 }
 
 
@@ -138,5 +148,5 @@ input::-webkit-inner-spin-button {
 }
 
 .active-tab {
-    background-color: rgba(235, 104, 104, 1);
+    background-color: rgb(221, 11, 11);
 }

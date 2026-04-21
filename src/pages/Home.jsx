@@ -20,9 +20,9 @@ export default function Home() {
     return (
         <>
             <div className="container-fluid">
-                <div className="row ">
-                    <div className="col-4 mt-4 background_custom border_r_none border_l_none">
-                        <div className="text-center">
+                <div className="row justify-content-around ">
+                    <div className="col-4 mt-4 background_custom border_r_none border_l_none border_radius_left p-3">
+                        <div className="text-center mt-3">
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
                         <FormInitiative />
@@ -41,8 +41,8 @@ export default function Home() {
 
 
 
-                    <div className="col-8 mt-4 background_custom border_r_none border_l_none">
-                        <div className="text-center">
+                    <div className="col-8 mt-4 background_custom border_r_none border_l_none border_radius_right p-3">
+                        <div className="text-center mt-3">
                             <h5>Aggiungi nemici</h5>
                         </div>
                         <FormGetMoster />
@@ -55,7 +55,7 @@ export default function Home() {
 
                                 ))
                                 ) : (<div className="col text-center mt-3">
-                                    <p>per iniziare scegli un mostro</p>
+                                    <p>per iniziare inserisci un mostro</p>
                                 </div>)
                             }
                         </div>

@@ -25,15 +25,15 @@ export default function SearchMonster({ name, setName }) {
 
 
     return (
-        <div>
+        <div className="">
             <label htmlFor="serch_encounter" className="custom-label">
                 cerca:
             </label>
-            <div className="relative">
+            <div className="relative ">
                 <input
 
                     id="serch_encounter"
-                    className="form-control"
+                    className="form-control "
                     type="text"
                     value={name}
                     onChange={(e) => { searchForAdd(e.target.value) }}
@@ -41,10 +41,10 @@ export default function SearchMonster({ name, setName }) {
                     placeholder="nome..."
                     required
                 />
-                <div className="searchbox">
+                <div className="searchbox  ">
                     {
                         (name && name.length >= 3 && search) && allMonsterFiltred.map((el, i) => (
-                            <div className="search_content" key={i} onClick={() => stopSearch(el.name)}>{el.name}</div>
+                            <div className="search_content " key={i} onClick={() => stopSearch(el.name)}>{el.name}</div>
                         ))
                     }
                 </div>

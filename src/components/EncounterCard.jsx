@@ -54,10 +54,9 @@ export default function EncounterCard({ el, i }) {
 
                 </div>
                 <div className="card-body ">
-
-                    <form onSubmit={handleDanno}>
-                        <div className="d-flex align-items-center">
-                            <div className="me-2">
+                    <div className="d-flex align-items-center">
+                        <form className="me-3" onSubmit={handleDanno}>
+                            <div className=" input-group">
                                 <input
                                     className="form-control"
                                     type="number"
@@ -65,16 +64,12 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputDanno(e.target.value)}
                                     placeholder="danno"
                                 />
-                            </div>
-                            <div className="mt-2 ms-2">
                                 <button className="btn btn-sm btn-warning" type="submit">Danno</button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                    <form onSubmit={handleCura}>
-                        <div className="d-flex align-items-center">
-                            <div className="me-2 mt-2">
+                        <form onSubmit={handleCura}>
+                            <div className="input-group ">
                                 <input
                                     className="form-control "
                                     type="number"
@@ -82,14 +77,13 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputCura(e.target.value)}
                                     placeholder="cura"
                                 />
-                            </div>
-                            <div className="mt-2 ms-2">
                                 <button className="btn btn-sm btn-success" type="submit">Cura</button>
                             </div>
+                        </form>
+                    </div>
 
-                        </div>
-                    </form>
-                    <div className="row row-cols-3">
+
+                    <div className="row row-cols-3 mt-3">
                         {el.strength <= 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: +{el.strength}</div>}
                         {el.dexterity <= 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: +{el.dexterity}</div>}
                         {el.constitution <= 0 ? <div className="col">cons:  {el.constitution}</div> : <div className="col">cons: +{el.constitution}</div>}
@@ -97,10 +91,14 @@ export default function EncounterCard({ el, i }) {
                         {el.wisdom <= 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: +{el.wisdom}</div>}
                         {el.charisma <= 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: +{el.charisma}</div>}
                     </div>
-                    <div className="row row-cols-12">
-                        {el.savingThrow && <div className="col border_t_custom">tiri salvezza: {el.savingThrow}</div>}
+                    <div className="row row-cols-1">
+                        {el.savingThrow && <div className="col border_t_custom mt-2 pt-2">tiri salvezza: {el.savingThrow}</div>}
+                        {el.skills && <div className="col border_t_custom mt-2 pt-2" >tiri abilità: {el.skills}</div>}
+                        {el.resistence && <div className="col border_t_custom mt-2 pt-2">resistenze: {el.resistence}</div>}
+                        {el.immunity && <div className="col border_t_custom mt-2 pt-2">immunità: {el.immunity}</div>}
+
                     </div>
-                    <div className="mt-2 d-flex justify-content-center">
+                    <div className="mt-2 d-flex justify-content-center mt-3">
                         <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target={`#encounterDelete${el.id}${i}`}>
                             Elimina
                         </button>

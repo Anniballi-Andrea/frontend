@@ -34,7 +34,7 @@ export default function FormGetMoster() {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-4">
-                    <button className="btn btn-primary" type="submit">crea</button>
+                    <button className="btn btn-primary btn-sm" type="submit">Aggiungi</button>
                 </div>
             </div>
         </form>
