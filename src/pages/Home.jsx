@@ -2,10 +2,10 @@
 
 import FormGetMoster from "../components/FormGetMonster";
 import { useMonster } from "../context/MonsterContext";
-import MonsterCard from "../components/MonsterCard";
 import FormInitiative from "../components/FormInitiative";
 import InitiativeTable from "../components/InitiativeTable";
 import { useInitiative } from "../context/InitiativeContext";
+import EncounterCard from "../components/EncounterCard";
 
 
 
@@ -20,14 +20,15 @@ export default function Home() {
     return (
         <>
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-4 mt-4 background_custom initiative_container">
+                <div className="row ">
+                    <div className="col-4 mt-4 background_custom border_r_none border_l_none">
                         <div className="text-center">
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
                         <FormInitiative />
-                        <div className="row">
-                            <div className="col-12" >{finalInitiative.length > 0 ?
+
+                        <div className="row mt-4 background_custom initiative_container ">
+                            <div className="col-12 " >{finalInitiative.length > 0 ?
                                 <InitiativeTable /> :
                                 <div className="col text-center mt-3">
                                     <p>inserisci i giocatori</p>
@@ -36,18 +37,20 @@ export default function Home() {
                             }
                             </div>
                         </div>
-
                     </div>
-                    <div className="col-8 mt-4 background_custom">
+
+
+
+                    <div className="col-8 mt-4 background_custom border_r_none border_l_none">
                         <div className="text-center">
                             <h5>Aggiungi nemici</h5>
                         </div>
                         <FormGetMoster />
                         <div className="row">
                             {
-                                battle.length > 0 ? (battle.map((el) => (
+                                battle.length > 0 ? (battle.map((el, i) => (
                                     <div key={el.instanceId} className="col-3 mt-3 mb-5">
-                                        <MonsterCard el={el} />
+                                        <EncounterCard el={el} i={i} />
                                     </div>
 
                                 ))

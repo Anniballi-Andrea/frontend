@@ -1,111 +1,108 @@
 
-import { useState } from "react";
-import { useMonster } from "../context/MonsterContext";
-import Modal from "./Modal";
-
 export default function MonsterCard({ el }) {
 
-    const { removeFromBattle, applicaDanno, applicaCura } = useMonster();
 
-    const [inputDanno, setInputDanno] = useState("");
-    const [inputCura, setInputCura] = useState("");
-
-
-    const handleDanno = (e) => {
-        e.preventDefault();
-        let danno = Number(inputDanno)
-        if (danno < 0) {
-            danno = 0
-        }
-        applicaDanno(el.instanceId, Number(danno))
-
-        setInputDanno("")
-    }
-    const handleCura = (e) => {
-        e.preventDefault();
-        let cura = Number(inputCura)
-        if (cura < 0) {
-            cura = 0
-        }
-        applicaCura(el.instanceId, Number(cura))
-
-        setInputCura("")
-    }
 
 
 
     return (
         <>
-            <div className="card card_home">
-                <div className="card-header text-center">
-                    <div className="mb-2">
-                        {el.name}
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <div className="me-2">{
-                            el.status == 0 ? "morto" : "PF:" + el.status}
-
+            <div className="col">
+                <div key={el.id} className="card bg_bage mb-4 mx-4">
+                    <div className="card-header bg_name text-center">
+                        <div className="d-flex justify-content-around">
+                            <div className="fw-bold">{el.name}</div>
+                            <div>Sfida: {el.level}</div>
                         </div>
-                        <div>
-                            CA: {el.armorClass}
-                        </div>
+
                     </div>
+                    <div className="card-body card_all_monsters">
+                        <div className="d-flex justify-content-between mb-2 ">
+                            <div > <span className="fw-bold">pf:</span>{el.lifePoint}</div>
+                            <div ><span className="fw-bold">ca:</span> {el.armorClass}</div>
+                        </div>
+                        <div className="text-start mb-2">
+                            <span className="fw-bold"> movimento:</span> {el.moviment}
+                        </div>
+                        <div className="row row-cols-3 mb-2 border-top border-top border-danger" >
+                            <div className="col"><span className="fw-bold">str:</span> {el.strength}</div>
+                            <div className="col"><span className="fw-bold">dex:</span> {el.dexterity} </div>
+                            <div className="col"><span className="fw-bold">cons:</span> {el.constitution} </div>
+                            <div className="col"><span className="fw-bold">int:</span> {el.intelligence}</div>
+                            <div className="col"><span className="fw-bold">sag:</span> {el.wisdom}</div>
+                            <div className="col"><span className="fw-bold">car:</span> {el.charisma}</div>
+                        </div>
+
+                        {el.immunity &&
+                            <div className="row row-cols-12 border-top border-danger text-start mb-2 ">
+                                <div className="col">
+                                    <span className="fw-bold">immunità:</span>  {el.immunity}
+                                </div>
+
+                            </div>
+                        }
+                        {el.resistence &&
+                            <div className="row row-cols-12 border-top border-danger text-start mb-2">
+                                <div className="col">
+                                    <span className="fw-bold">resistenze:</span>  {el.resistence}
+                                </div>
+
+                            </div>
+                        }
+                        {el.savingThrow &&
+                            <div className="row row-cols-12 border-top border-danger text-start mb-2">
+                                <div className="col">
+                                    <span className="fw-bold">tiri salvezza:</span>  {el.savingThrow}
+                                </div>
+
+                            </div>
+                        }
+                        {el.skills &&
+                            <div className="row row-cols-12 border-top border-danger text-start mb-2">
+                                <div className="col">
+                                    <span className="fw-bold">abilità:</span> {el.skills}
+                                </div>
+
+                            </div>
+                        }
 
 
+                        {el.trait.length > 0 &&
+                            <div className="row row-cols-12 border-top border-danger">
+                                <div className="mb-2 ">
+                                    <h5>Tratti:</h5>
+                                </div>
+                            </div>
+                        }
+
+                        {el.trait.length > 0 && el.trait.map((trait) => (
+
+                            <div key={trait.id} className="mb-2">
+                                <div><span className="fw-bold">{trait.name}</span>: {trait.effect}</div>
+
+                            </div>
+
+                        ))}
+
+
+                        {el.actions.length > 0 &&
+                            <div className="row row-cols-12 border-top border-danger">
+                                <div className="mb-2 ">
+                                    <h5>Azioni:</h5>
+                                </div>
+                            </div>
+                        }
+                        {el.actions.length > 0 && el.actions.map((action) => (
+                            <div key={action.id} className="mb-2">
+                                <div><span className="fw-bold">{action.name}</span>: {action.effect}</div>
+
+                            </div>
+                        ))}
+
+                    </div>
                 </div>
-                <div className="card-body ">
 
-                    <form onSubmit={handleDanno}>
-                        <div className="d-flex align-items-center">
-                            <div className="me-2">
-                                <input
-                                    className="form-control"
-                                    type="number"
-                                    value={inputDanno}
-                                    onChange={(e) => setInputDanno(e.target.value)}
-                                    placeholder="danno"
-                                />
-                            </div>
-                            <div className="mt-2 ms-2">
-                                <button className="btn btn-sm btn-warning" type="submit">Danno</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form onSubmit={handleCura}>
-                        <div className="d-flex align-items-center">
-                            <div className="me-2 mt-2">
-                                <input
-                                    className="form-control "
-                                    type="number"
-                                    value={inputCura}
-                                    onChange={(e) => setInputCura(e.target.value)}
-                                    placeholder="cura"
-                                />
-                            </div>
-                            <div className="mt-2 ms-2">
-                                <button className="btn btn-sm btn-success" type="submit">Cura</button>
-                            </div>
-
-                        </div>
-                    </form>
-                    <div className="row row-cols-3">
-                        {el.strength <= 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: +{el.strength}</div>}
-                        {el.dexterity <= 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: +{el.dexterity}</div>}
-                        {el.constitution <= 0 ? <div className="col">cons:  {el.constitution}</div> : <div className="col">cons: +{el.constitution}</div>}
-                        {el.intelligence <= 0 ? <div className="col">int:  {el.intelligence}</div> : <div className="col">int: +{el.intelligence}</div>}
-                        {el.wisdom <= 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: +{el.wisdom}</div>}
-                        {el.charisma <= 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: +{el.charisma}</div>}
-                    </div>
-                    <div className="mt-2 d-flex justify-content-center">
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#encounterDelete">
-                            Elimina
-                        </button>
-                        <Modal removeElement={removeFromBattle} el={el.instanceId} id="encounterDelete" />
-                    </div>
-                </div>
-            </div>
-
+            </div >
         </>
 
     )

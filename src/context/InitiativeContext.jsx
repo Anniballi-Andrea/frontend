@@ -10,6 +10,8 @@ export function InitiativeProvider({ children }) {
     const [playerName, setPlayerName] = useState("")
     const [playerInit, setPlayerInit] = useState("")
     const [playerDex, setPlayerDex] = useState("")
+    const [turnOn, setTurnOn] = useState(0)
+    const [round, setRound] = useState(0)
     const [initiative, setInitiative] = useState(() => {
         const savedInitiative = localStorage.getItem("battle-initiative");
         return savedInitiative ? JSON.parse(savedInitiative) : []
@@ -74,6 +76,15 @@ export function InitiativeProvider({ children }) {
 
     }
 
+    const nextPlayer = () => {
+        if (turnOn == finalInitiative.length - 1) {
+            setTurnOn(0)
+            setRound(round + 1)
+        } else {
+            setTurnOn(turnOn + 1)
+        }
+    }
+
     function resetInitiative() {
         const newInit = []
         initiative.map((el) => {
@@ -85,7 +96,10 @@ export function InitiativeProvider({ children }) {
             }
             newInit.push(newElement)
         }
+
         )
+        setRound(0)
+        setTurnOn(0)
         setInitiative(newInit)
     }
 
@@ -109,7 +123,12 @@ export function InitiativeProvider({ children }) {
                 updateInit,
                 updateDex,
                 deleteFromInit,
-                resetInitiative
+                resetInitiative,
+                nextPlayer,
+                turnOn,
+                setTurnOn,
+                round,
+                setRound
             }}
         >
             {children}

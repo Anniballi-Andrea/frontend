@@ -8,8 +8,9 @@ const MonsterContext = createContext();
 
 export function MonsterProvider({ children }) {
     const [encounterNumb, setEncounterNumb] = useState("");
+    const [encounterName, setEncounterName] = useState("");
+    const [allMonsters, setAllMonsters] = useState([]);
     const [monsterName, setMonsterName] = useState("");
-    const [allMonsters, setAllMonsters] = useState([])
 
 
 
@@ -37,11 +38,12 @@ export function MonsterProvider({ children }) {
             .catch((err) => console.error("errore:", err));
     }
 
+
     const getMonster = (e) => {
         e.preventDefault();
 
         axios
-            .get(`http://localhost:8080/api/monsters/serchByName/${monsterName}`)
+            .get(`http://localhost:8080/api/monsters/serchByName/${encounterName}`)
             .then((response) => {
                 const data = response.data;
                 const newBattle = [];
@@ -77,11 +79,15 @@ export function MonsterProvider({ children }) {
                 }
                 setBattle([...battle, ...newBattle]);
                 setEncounterNumb("")
-                setMonsterName("")
+                setEncounterName("")
             })
             .catch((err) => console.error("errore:", err));
 
     }
+
+    const filtredMonster = allMonsters.filter((el) => {
+        return el.name.toLowerCase().includes(monsterName.toLowerCase())
+    })
 
     const removeFromBattle = (id) => {
         setBattle((prev) => prev.filter((el) => el.instanceId !== id));
@@ -132,15 +138,18 @@ export function MonsterProvider({ children }) {
             value={{
                 encounterNumb,
                 setEncounterNumb,
-                monsterName,
-                setMonsterName,
+                encounterName,
+                setEncounterName,
                 battle,
                 setBattle,
                 getMonster,
                 removeFromBattle,
                 applicaDanno,
                 applicaCura,
-                allMonsters
+                allMonsters,
+                monsterName,
+                setMonsterName,
+                filtredMonster
             }}
         >
             {children}

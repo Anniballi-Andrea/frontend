@@ -1,58 +1,21 @@
 import { useState } from "react";
 import { useMonster } from "../context/MonsterContext"
+import SearchMonster from "./SearchMonster";
 
 export default function FormGetMoster() {
 
-    const { allMonsters, getMonster, monsterName, setMonsterName, encounterNumb, setEncounterNumb } = useMonster();
-    const [search, setSearch] = useState(false)
+    const { getMonster, encounterName, setEncounterName, encounterNumb, setEncounterNumb } = useMonster();
 
 
 
-    const allMonsterFiltred = allMonsters.filter((el) => {
-        return el.name.toLowerCase().includes(monsterName.toLowerCase())
-    });
 
-    const searchForAdd = ((name) => {
-        setSearch(true)
-        setMonsterName(name)
-    })
-
-    const stopSearch = ((name) => {
-        setSearch(false)
-        setMonsterName(name)
-    })
 
 
     return (
         <form className="mt-2" onSubmit={getMonster}>
             <div className="row justify-content-center">
                 <div className="col-4">
-                    <div>
-                        <label htmlFor="serch_encounter" className="custom-label">
-                            Mostro da cercare:
-                        </label>
-                        <div className="relative">
-                            <input
-
-                                id="serch_encounter"
-                                className="form-control"
-                                type="text"
-                                value={monsterName}
-                                onChange={(e) => { searchForAdd(e.target.value) }}
-                                autoComplete="off"
-                                placeholder="nome..."
-                                required
-                            />
-                            <div className="searchbox">
-                                {
-                                    (monsterName.length >= 3 && search) && allMonsterFiltred.map((el, i) => (
-                                        <div className="search_content" key={i} onClick={() => stopSearch(el.name)}>{el.name}</div>
-                                    ))
-                                }
-                            </div>
-                        </div>
-
-                    </div>
+                    <SearchMonster name={encounterName} setName={setEncounterName} />
                 </div>
                 <div className="col-4">
                     <div>
