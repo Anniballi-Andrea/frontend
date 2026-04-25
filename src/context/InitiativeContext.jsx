@@ -61,9 +61,7 @@ export function InitiativeProvider({ children }) {
 
     }
 
-    useEffect(() => { console.log(initiative) }, [initiative])
 
-    const log = (el) => console.log(el)
 
 
     const updateInitName = (id, name) => {
@@ -77,9 +75,10 @@ export function InitiativeProvider({ children }) {
         );
     }
     const updateDex = (id, dex) => {
-        const value = Number(dex);
-        setInitiative((prev) => prev.map((el) => (el.id === id ? { ...el, dex: value } : el))
-        );
+        const value = dex;
+        setInitiative((prev) => prev.map((el) => (el.id === id ? { ...el, dex: value } : el)));
+
+
     }
 
 

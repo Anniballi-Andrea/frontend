@@ -49,7 +49,7 @@ export default function Home() {
                         <div className="row">
                             {
                                 battle.length > 0 ? (battle.map((el, i) => (
-                                    <div key={el.instanceId} className="col-3 mt-3 mb-5">
+                                    <div key={el.instanceId} className="col-md-4 col-lg-3 mt-3 mb-5">
                                         <EncounterCard el={el} i={i} />
                                     </div>
 

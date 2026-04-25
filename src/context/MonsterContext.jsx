@@ -11,6 +11,7 @@ export function MonsterProvider({ children }) {
     const [encounterName, setEncounterName] = useState("");
     const [allMonsters, setAllMonsters] = useState([]);
     const [monsterName, setMonsterName] = useState("");
+    const [monsterText, setMonsterText] = useState("");
 
 
 
@@ -63,7 +64,8 @@ export function MonsterProvider({ children }) {
                             ...data,
                             name: `${data.name} ${index}`,
                             status: `${data.lifePoint}`,
-                            instanceId: newId
+                            instanceId: newId,
+                            text: monsterText,
                         };
                         newBattle.push(encounterInstance);
                     } else {
@@ -130,6 +132,9 @@ export function MonsterProvider({ children }) {
         )
     }
 
+
+
+
     useEffect(() => { getAllMonster() }, [])
 
 
@@ -149,7 +154,9 @@ export function MonsterProvider({ children }) {
                 allMonsters,
                 monsterName,
                 setMonsterName,
-                filtredMonster
+                filtredMonster,
+                monsterText,
+                setMonsterText,
             }}
         >
             {children}

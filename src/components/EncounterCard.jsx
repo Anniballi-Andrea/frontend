@@ -2,10 +2,9 @@
 import { useState } from "react";
 import { useMonster } from "../context/MonsterContext";
 import Modal from "./Modal";
-
 export default function EncounterCard({ el, i }) {
 
-    const { removeFromBattle, applicaDanno, applicaCura } = useMonster();
+    const { removeFromBattle, applicaDanno, applicaCura, monsterText, setMonsterText, setBattle } = useMonster();
 
     const [inputDanno, setInputDanno] = useState("");
     const [inputCura, setInputCura] = useState("");
@@ -32,7 +31,14 @@ export default function EncounterCard({ el, i }) {
         setInputCura("")
     }
 
+    const cangeMonsterText = ((id, text) => {
+        setBattle(prevBattle =>
+            prevBattle.map(element =>
+                element.instanceId === id ? { ...element, text: text } : element
 
+            )
+        )
+    })
 
     return (
         <>
@@ -64,10 +70,10 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputDanno(e.target.value)}
                                     placeholder="danno"
                                 />
-                                <button className="btn btn-sm btn-warning" type="submit">Danno</button>
+                                <button className="btn btn-sm btn-warning" type="submit"><img src="../public/img/sword_icon.svg" alt="" /></button>
                             </div>
                         </form>
-
+                        {/*input danno*/}
                         <form onSubmit={handleCura}>
                             <div className="input-group ">
                                 <input
@@ -77,12 +83,12 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputCura(e.target.value)}
                                     placeholder="cura"
                                 />
-                                <button className="btn btn-sm btn-success" type="submit">Cura</button>
+                                <button className="btn btn-sm btn-success text-dark" type="submit"><i class="bi bi-heart-fill"></i></button>
                             </div>
                         </form>
+                        {/*input cura*/}
                     </div>
-
-
+                    {/*input danno/cura */}
                     <div className="row row-cols-3 mt-3">
                         {el.strength <= 0 ? <div className="col">str: {el.strength}</div> : <div className="col">str: +{el.strength}</div>}
                         {el.dexterity <= 0 ? <div className="col">dex: {el.dexterity}</div> : <div className="col">dex: +{el.dexterity}</div>}
@@ -91,6 +97,7 @@ export default function EncounterCard({ el, i }) {
                         {el.wisdom <= 0 ? <div className="col">sag:  {el.wisdom}</div> : <div className="col">sag: +{el.wisdom}</div>}
                         {el.charisma <= 0 ? <div className="col">car:  {el.charisma}</div> : <div className="col">car: +{el.charisma}</div>}
                     </div>
+                    {/*stats*/}
                     <div className="row row-cols-1">
                         {el.savingThrow && <div className="col border_t_custom mt-2 pt-2">tiri salvezza: {el.savingThrow}</div>}
                         {el.skills && <div className="col border_t_custom mt-2 pt-2" >tiri abilità: {el.skills}</div>}
@@ -98,12 +105,24 @@ export default function EncounterCard({ el, i }) {
                         {el.immunity && <div className="col border_t_custom mt-2 pt-2">immunità: {el.immunity}</div>}
 
                     </div>
+                    {/*abilità e resistenze*/}
+                    <div className="row row-cols-1 mt-3">
+                        <textarea
+                            name="malus"
+                            placeholder="testo..."
+                            value={el.text}
+                            onChange={(e) => cangeMonsterText(el.instanceId, e.target.value)}
+                        >
+                        </textarea>
+                    </div>
+                    {/*text area*/}
                     <div className="mt-2 d-flex justify-content-center mt-3">
                         <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target={`#encounterDelete${el.id}${i}`}>
                             Elimina
                         </button>
                         <Modal removeElement={removeFromBattle} el={el.instanceId} id={`encounterDelete${el.id}${i}`} />
                     </div>
+                    {/*elimina*/}
                 </div>
             </div>
 
