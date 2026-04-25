@@ -83,7 +83,7 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputCura(e.target.value)}
                                     placeholder="cura"
                                 />
-                                <button className="btn btn-sm btn-success text-dark" type="submit"><i class="bi bi-heart-fill"></i></button>
+                                <button className="btn btn-sm btn-success text-dark" type="submit"><i className="bi bi-heart-fill"></i></button>
                             </div>
                         </form>
                         {/*input cura*/}
@@ -120,7 +120,7 @@ export default function EncounterCard({ el, i }) {
                         <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target={`#encounterDelete${el.id}${i}`}>
                             Elimina
                         </button>
-                        <Modal removeElement={removeFromBattle} el={el.instanceId} id={`encounterDelete${el.id}${i}`} />
+                        <Modal confirm={removeFromBattle} el={el.instanceId} id={`encounterDelete${el.id}${i}`} />
                     </div>
                     {/*elimina*/}
                 </div>

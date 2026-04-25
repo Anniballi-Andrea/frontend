@@ -6,13 +6,15 @@ import FormInitiative from "../components/FormInitiative";
 import InitiativeTable from "../components/InitiativeTable";
 import { useInitiative } from "../context/InitiativeContext";
 import EncounterCard from "../components/EncounterCard";
+import Modal from "../components/Modal";
+import RoundComponent from "../components/RoundComponent";
 
 
 
 
 export default function Home() {
     const { battle } = useMonster();
-    const { finalInitiative } = useInitiative();
+    const { finalInitiative, resetInitiative, nextPlayer, round } = useInitiative();
 
 
 
@@ -25,19 +27,26 @@ export default function Home() {
                         <div className="text-center mt-3">
                             <h5>inserisci giocatori e nemici</h5>
                         </div>
+                        {/*titolo */}
                         <FormInitiative />
-
                         <div className="row mt-4 background_custom initiative_container ">
                             <div className="col-12 " >{finalInitiative.length > 0 ?
-                                <InitiativeTable /> :
+                                <>
+                                    <InitiativeTable />
+
+                                </>
+                                :
                                 <div className="col text-center mt-3">
                                     <p>inserisci i giocatori</p>
                                 </div>
-
+                                //alternativa
                             }
+                                <RoundComponent />
                             </div>
                         </div>
+                        {/* tabella iniziativa */}
                     </div>
+                    {/* lato destro con sistema iniziatva */}
 
 
 
@@ -58,10 +67,14 @@ export default function Home() {
                                     <p>per iniziare inserisci un mostro</p>
                                 </div>)
                             }
+                            {/* */}
                         </div>
+                        {/*card dell'encounter */}
                     </div>
+                    {/*lato sinistro con sistema encounter */}
                 </div>
             </div>
+            <Modal confirm={resetInitiative} id={`resetRound`} />
         </>
     )
 }

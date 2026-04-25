@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useMonster } from "../context/MonsterContext"
 import SearchMonster from "./SearchMonster";
 

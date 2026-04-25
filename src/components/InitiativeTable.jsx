@@ -1,16 +1,18 @@
-import { useState } from "react"
 import { useInitiative } from "../context/InitiativeContext"
+import Modal from "./Modal"
 
 export default function InitiativeTable() {
-    const { updateInitName, updateInit, updateDex, deleteFromInit, finalInitiative, resetInitiative, nextPlayer, turnOn, round } = useInitiative()
+    const { updateInitName, updateInit, updateDex, deleteFromInit, finalInitiative, turnOn } = useInitiative()
 
 
     return (
-        <><div className="col text-center mt-3">
-            <p>INIZIATIVA:</p>
-        </div>
-            <table className="mt-3 table beckground_table text-center">
+        <>
+            <div className="col text-center mt-3">
+                <p>INIZIATIVA:</p>
+            </div>
+            {/* titolo */}
 
+            <table className="mt-3 table beckground_table text-center">
                 <thead>
                     <tr>
                         <th> Name</th>
@@ -19,26 +21,33 @@ export default function InitiativeTable() {
                         <th >Elimina</th>
                     </tr>
                 </thead>
-
+                {/* testa della tabella */}
                 <tbody>
-
                     {
                         finalInitiative.map((el, i) => (turnOn == i ?
-                            <tr className="active-tab" key={el.id}>
-                                <td><input
-                                    type="text"
-                                    value={el.name}
-                                    className="form-control "
-                                    onChange={(e) => updateInitName(el.id, e.target.value)}
+                            <tr key={el.id} className="active-tab" >
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={el.name}
+                                        className="form-control "
+                                        onChange={(e) => updateInitName(el.id, e.target.value)}
 
-                                /></td>
-                                <td><input
-                                    type="number"
-                                    value={el.initiative}
-                                    className="form-control "
-                                    onChange={(e) => updateInit(el.id, e.target.value)}
-                                    placeholder="0"
-                                /></td>
+                                    />
+                                    {/* input del nome*/}
+                                </td>
+                                {/* area del nome */}
+                                <td>
+                                    <input
+                                        type="number"
+                                        value={el.initiative}
+                                        className="form-control "
+                                        onChange={(e) => updateInit(el.id, e.target.value)}
+                                        placeholder="0"
+                                    />
+                                    {/* input dell'iniziativa */}
+                                </td>
+                                {/* area dell'iniziativa */}
                                 <td>
                                     <input
                                         type="number"
@@ -46,30 +55,40 @@ export default function InitiativeTable() {
                                         className="form-control "
                                         onChange={(e) => updateDex(el.id, e.target.value)}
                                     />
+                                    {/* input destrezza */}
                                 </td>
+                                {/* area della destrezza */}
                                 <td>
-                                    <button type="button" onClick={() => deleteFromInit(el.id)} className="btn btn-sm btn-danger">
+                                    <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target={`#initiativeDelete${el.id}${i}`}>
                                         <i className="bi bi-trash3-fill"></i>
                                     </button>
+                                    <Modal confirm={deleteFromInit} el={el.id} id={`initiativeDelete${el.id}${i}`} />
                                 </td>
+                                {/* tasto per eliminare dall'iniziativa */}
                             </tr>
-
+                            //se la riga della tabella è quella attiva vale il codice sopra
                             :
                             <tr key={el.id}>
-                                <td><input
-                                    type="text"
-                                    value={el.name}
-                                    className="form-control "
-                                    onChange={(e) => updateInitName(el.id, e.target.value)}
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={el.name}
+                                        className="form-control "
+                                        onChange={(e) => updateInitName(el.id, e.target.value)}
 
-                                /></td>
-                                <td><input
-                                    type="number"
-                                    value={el.initiative}
-                                    className="form-control "
-                                    onChange={(e) => updateInit(el.id, e.target.value)}
-                                    placeholder="0"
-                                /></td>
+                                    />
+                                </td>
+                                {/* area del nome */}
+                                <td>
+                                    <input
+                                        type="number"
+                                        value={el.initiative}
+                                        className="form-control "
+                                        onChange={(e) => updateInit(el.id, e.target.value)}
+                                        placeholder="0"
+                                    />
+                                </td>
+                                {/* area dell'iniziativa */}
                                 <td>
                                     <input
                                         type="number"
@@ -78,42 +97,24 @@ export default function InitiativeTable() {
                                         onChange={(e) => updateDex(el.id, e.target.value)}
                                     />
                                 </td>
+                                {/* area della destrezza */}
                                 <td>
-                                    <button type="button" onClick={() => deleteFromInit(el.id)} className="btn btn-sm btn-danger">
+                                    <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target={`#initiativeDelete${el.id}${i}`}>
                                         <i className="bi bi-trash3-fill"></i>
                                     </button>
+                                    <Modal confirm={deleteFromInit} el={el.id} id={`initiativeDelete${el.id}${i}`} />
                                 </td>
+                                {/* tasto per eliminare dall'iniziativa */}
                             </tr>
-
+                            //se la riga della tabella è quella non attiva vale il codice sopra
                         ))
+                        //tutte le righe della tabella
                     }
-
-
                 </tbody>
-
+                {/* corpo della tabella*/}
             </table>
-            <div className="d-flex justify-content-center align-items-center color_round">
-                <span className="fw-bold fs-5 me-1">Round:</span><span className="fw-bold fs-5"> {round}</span>
-            </div>
-            <div className="d-flex justify-content-around mb-4">
-                <div>
-                    <button
-                        className="btn btn-warning"
-                        type="button"
-                        onClick={resetInitiative}>
-                        Reset
-                    </button>
-                </div>
-                <div>
-                    <button
-                        className="btn btn-warning"
-                        type="button"
-                        onClick={nextPlayer}>
-                        next
-                    </button>
-                </div>
+            {/* tabella iniziativa*/}
 
-            </div>
         </>
     )
 }
