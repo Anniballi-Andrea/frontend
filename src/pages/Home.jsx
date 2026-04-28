@@ -14,9 +14,7 @@ import RoundComponent from "../components/RoundComponent";
 
 export default function Home() {
     const { battle } = useMonster();
-    const { finalInitiative, resetInitiative, nextPlayer, round } = useInitiative();
-
-
+    const { finalInitiative, resetInitiative, } = useInitiative();
 
 
     return (
@@ -47,8 +45,6 @@ export default function Home() {
                         {/* tabella iniziativa */}
                     </div>
                     {/* lato destro con sistema iniziatva */}
-
-
 
                     <div className="col-8 mt-4 background_custom border_r_none border_l_none border_radius_right p-3">
                         <div className="text-center mt-3">

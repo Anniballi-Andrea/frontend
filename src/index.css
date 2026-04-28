@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url("../public/img/sfondo.png");
+    background-image: url("/img/sfondo.png");
     background-size: cover;
     height: 100vh;
     color: white;
@@ -149,4 +149,8 @@ input::-webkit-inner-spin-button {
 
 .active-tab {
     background-color: rgb(221, 11, 11);
+}
+
+.active {
+    color: #a9741c !important;
 }

@@ -70,7 +70,7 @@ export default function EncounterCard({ el, i }) {
                                     onChange={(e) => setInputDanno(e.target.value)}
                                     placeholder="danno"
                                 />
-                                <button className="btn btn-sm btn-warning" type="submit"><img src="../public/img/sword_icon.svg" alt="" /></button>
+                                <button className="btn btn-sm btn-warning" type="submit"><img src="/img/sword_icon.svg" alt="" /></button>
                             </div>
                         </form>
                         {/*input danno*/}
